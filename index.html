@@ -1,201 +1,1004 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="copper">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAYANTANI | Art & Digital Exhibition</title>
+    <title>Sayantani | Premium Art & Visual Design Exhibition</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <nav id="navbar">
-        <div class="nav-container">
-            <div class="logo">SAYANTANI.</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#exhibition">Exhibition</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#shop">Shop</a></li>
-                <li><a href="#story">About</a></li>
-                <li><a href="#commissions">Commissions</a></li>
-            </ul>
-            <div class="theme-switcher">
-                <button class="theme-btn" data-set-theme="emerald" style="background: #0F1D1A; border-color: #D4AF37;"></button>
-                <button class="theme-btn active" data-set-theme="copper" style="background: #0B1220; border-color: #C47A3A;"></button>
-                <button class="theme-btn" data-set-theme="burgundy" style="background: #1B0F12; border-color: #D4AF37;"></button>
-            </div>
-        </div>
-    </nav>
+<body data-theme="midnight" class="loading">
 
-    <header id="home" class="hero">
-        <canvas id="particle-canvas"></canvas>
-        <div class="hero-content reveal-text">
-            <h1 class="title">SAYANTANI</h1>
-            <p class="subtitle">Traditional Artist <span class="dot">•</span> Graphic Designer <span class="dot">•</span> Visual Storyteller</p>
-            <p class="description">Transforming imagination into timeless art.</p>
-            <a href="#gallery" class="btn-primary">Explore Gallery</a>
+    <!-- Custom Luxury Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <h1 class="preloader-logo">SAYANTANI</h1>
+            <div class="preloader-line">
+                <div class="preloader-progress"></div>
+            </div>
+            <p class="preloader-subtitle">Opening the Digital Exhibition...</p>
+        </div>
+    </div>
+
+    <!-- Custom Premium Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="custom-cursor-follower" id="custom-cursor-follower"></div>
+
+    <!-- Canvas for Floating Particles (Futuristic 30%) -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Header & Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="#home" class="logo">
+                SAYANTANI<span class="logo-dot">.</span>
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#current-exhibition" class="nav-link">Collections</a></li>
+                    <li><a href="#categories" class="nav-link">Categories</a></li>
+                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#shop" class="nav-link">Shop</a></li>
+                    <li><a href="#commissions" class="nav-link">Commissions</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Quick Theme Switcher & Action Elements -->
+            <div class="header-actions">
+                <div class="theme-switcher-container">
+                    <button class="theme-btn-active" id="theme-btn-trigger" title="Switch Theme">
+                        <span class="current-theme-color"></span>
+                        <i class="fa-solid fa-palette"></i>
+                    </button>
+                    <div class="theme-dropdown" id="theme-dropdown">
+                        <button class="theme-opt" data-theme-val="emerald" title="Emerald Gold">
+                            <span class="color-preview emerald-preview"></span>
+                            Emerald Gold
+                        </button>
+                        <button class="theme-opt active" data-theme-val="midnight" title="Midnight Copper">
+                            <span class="color-preview midnight-preview"></span>
+                            Midnight Copper
+                        </button>
+                        <button class="theme-opt" data-theme-val="burgundy" title="Royal Burgundy">
+                            <span class="color-preview burgundy-preview"></span>
+                            Royal Burgundy
+                        </button>
+                    </div>
+                </div>
+                <a href="#commissions" class="cta-nav-btn">Commission Art</a>
+            </div>
         </div>
     </header>
 
-    <section id="exhibition" class="section">
-        <h2 class="section-title scroll-reveal">Current Exhibition</h2>
-        <div class="grid-3 featured-grid">
-            <div class="art-card scroll-reveal">
-                <div class="img-wrapper"><img src="https://picsum.photos/seed/art1/600/800" alt="Artwork"></div>
-                <div class="card-info">
-                    <h3>Ethereal Silence</h3>
-                    <p>Oil on Canvas, 2025</p>
+    <!-- 1. Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-container">
+            <!-- Left Info Panel -->
+            <div class="hero-text-content">
+                <div class="hero-badge animate-on-load delay-1">EXHIBITION 2026</div>
+                <h1 class="hero-title animate-on-load delay-2">
+                    <span class="word-wrapper"><span class="word">SAYANTANI</span></span>
+                </h1>
+                <div class="hero-subtitle animate-on-load delay-3">
+                    <span class="typed-text">Traditional Artist</span>
+                    <span class="separator">•</span>
+                    <span class="typed-text">Graphic Designer</span>
+                    <span class="separator">•</span>
+                    <span class="typed-text">Visual Storyteller</span>
+                </div>
+                <p class="hero-description animate-on-load delay-4">
+                    Transforming imagination into timeless art. Merging classical craftsmanship with modern digital design.
+                </p>
+                <div class="hero-actions animate-on-load delay-5">
+                    <a href="#gallery" class="btn btn-primary magnetic" data-dist="0.2">
+                        <span>Explore Gallery</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#about" class="btn btn-secondary magnetic" data-dist="0.2">
+                        <span>The Artist's Journey</span>
+                    </a>
                 </div>
             </div>
-            <div class="art-card scroll-reveal" style="transition-delay: 0.1s;">
-                <div class="img-wrapper"><img src="https://picsum.photos/seed/art2/600/800" alt="Artwork"></div>
-                <div class="card-info">
-                    <h3>Midnight Bloom</h3>
-                    <p>Digital Painting, 2026</p>
+
+            <!-- Right Visual Panel (Immersive Parallax Artwork Container) -->
+            <div class="hero-artwork-wrapper animate-on-load delay-3">
+                <div class="parallax-frame" id="hero-parallax-frame">
+                    <div class="parallax-glow"></div>
+                    <div class="artwork-inner" id="hero-artwork-inner">
+                        <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=1200&auto=format&fit=crop" alt="Sayantani Featured Artwork - Celestial Echoes" class="featured-img" id="hero-img">
+                        <div class="artwork-caption">
+                            <div class="caption-title">Celestial Echoes</div>
+                            <div class="caption-meta">Digital Gold Fluid Acrylic, 2026</div>
+                        </div>
+                    </div>
+                    <!-- Luxury Grid Overlays (Futuristic Digital Vibe) -->
+                    <div class="grid-layer layer-1"></div>
+                    <div class="grid-layer layer-2"></div>
                 </div>
             </div>
-            <div class="art-card scroll-reveal" style="transition-delay: 0.2s;">
-                <div class="img-wrapper"><img src="https://picsum.photos/seed/art3/600/800" alt="Artwork"></div>
-                <div class="card-info">
-                    <h3>Golden Echoes</h3>
-                    <p>Mixed Media, 2026</p>
+        </div>
+
+        <div class="scroll-down-indicator">
+            <div class="mouse-icon">
+                <div class="mouse-wheel"></div>
+            </div>
+            <span>Scroll to Enter Gallery</span>
+        </div>
+    </section>
+
+    <!-- 2. Featured Collection Section -->
+    <section class="featured-section scroll-section" id="current-exhibition">
+        <div class="container">
+            <div class="section-header reveal-reveal">
+                <span class="section-subtitle">MUSEUM SHOWCASE</span>
+                <h2 class="section-title text-center">Current Exhibition</h2>
+                <div class="section-divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-diamond"></div>
+                    <div class="divider-line"></div>
+                </div>
+            </div>
+
+            <div class="featured-grid">
+                <!-- Artwork 1 -->
+                <div class="featured-card card-glow reveal-reveal">
+                    <div class="featured-image-container floating-effect">
+                        <img src="https://images.unsplash.com/photo-1579783928621-7a13d66a6211?q=80&w=800&auto=format&fit=crop" alt="La Flora" class="featured-card-img">
+                        <div class="card-overlay">
+                            <a href="#gallery" class="view-exhibition-btn"><i class="fa-solid fa-expand"></i> View Detail</a>
+                        </div>
+                    </div>
+                    <div class="featured-info">
+                        <span class="card-year">2025</span>
+                        <h3 class="card-title">La Flora</h3>
+                        <p class="card-medium">Oil & Gold Leaf on Board</p>
+                    </div>
+                </div>
+
+                <!-- Artwork 2 (Main Featured) -->
+                <div class="featured-card featured-card-large card-glow reveal-reveal">
+                    <div class="featured-image-container floating-effect delay-1">
+                        <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=800&auto=format&fit=crop" alt="Metamorphosis" class="featured-card-img">
+                        <div class="card-overlay">
+                            <a href="#gallery" class="view-exhibition-btn"><i class="fa-solid fa-expand"></i> View Detail</a>
+                        </div>
+                    </div>
+                    <div class="featured-info">
+                        <span class="card-year">2026</span>
+                        <h3 class="card-title">Metamorphosis</h3>
+                        <p class="card-medium">Mixed Media & Acrylic on Canvas</p>
+                    </div>
+                </div>
+
+                <!-- Artwork 3 -->
+                <div class="featured-card card-glow reveal-reveal">
+                    <div class="featured-image-container floating-effect delay-2">
+                        <img src="https://images.unsplash.com/photo-1580136579312-94651dfd596d?q=80&w=800&auto=format&fit=crop" alt="Serenity of the Sea" class="featured-card-img">
+                        <div class="card-overlay">
+                            <a href="#gallery" class="view-exhibition-btn"><i class="fa-solid fa-expand"></i> View Detail</a>
+                        </div>
+                    </div>
+                    <div class="featured-info">
+                        <span class="card-year">2024</span>
+                        <h3 class="card-title">Serenity of the Sea</h3>
+                        <p class="card-medium">Classical Oil on Wood Panel</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section categories-section">
-        <div class="grid-5 categories-grid">
-            <div class="category-card glass scroll-reveal"><h4>Paintings</h4></div>
-            <div class="category-card glass scroll-reveal"><h4>Sketches</h4></div>
-            <div class="category-card glass scroll-reveal"><h4>Posters</h4></div>
-            <div class="category-card glass scroll-reveal"><h4>Graphic Design</h4></div>
-            <div class="category-card glass scroll-reveal"><h4>Commissions</h4></div>
-        </div>
-    </section>
-
-    <section id="gallery" class="section">
-        <h2 class="section-title scroll-reveal">The Archives</h2>
-        <div class="masonry-grid">
-            </div>
-    </section>
-
-    <section id="story" class="section story-section">
-        <h2 class="section-title scroll-reveal">The Artist Behind The Canvas</h2>
-        <div class="story-container">
-            <div class="story-image scroll-reveal">
-                <img src="https://picsum.photos/seed/artist/800/1000" alt="Sayantani">
-            </div>
-            <div class="timeline scroll-reveal">
-                <div class="timeline-item"><span class="year">2022</span><p>Started Art Journey</p></div>
-                <div class="timeline-item"><span class="year">2023</span><p>First Exhibition</p></div>
-                <div class="timeline-item"><span class="year">2024</span><p>First Commission</p></div>
-                <div class="timeline-item"><span class="year">2025</span><p>Expanded Into Graphic Design</p></div>
-                <div class="timeline-item"><span class="year">2026</span><p>Portfolio Launch</p></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="shop" class="section">
-        <h2 class="section-title scroll-reveal">Premium Prints</h2>
-        <div class="grid-3 shop-grid">
-            <div class="shop-card tilt-card glass scroll-reveal">
-                <img src="https://picsum.photos/seed/print1/500/500" alt="Print">
-                <div class="shop-info">
-                    <h3>City of Dreams</h3>
-                    <span class="price">$120</span>
+    <!-- 3. Categories Section -->
+    <section class="categories-section scroll-section" id="categories">
+        <div class="container">
+            <div class="section-header reveal-reveal">
+                <span class="section-subtitle">ARTISTIC DOMAINS</span>
+                <h2 class="section-title text-center">Creative Mediums</h2>
+                <div class="section-divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-diamond"></div>
+                    <div class="divider-line"></div>
                 </div>
-                <button class="btn-outline">Purchase</button>
             </div>
-            <div class="shop-card tilt-card glass scroll-reveal">
-                <img src="https://picsum.photos/seed/print2/500/500" alt="Print">
-                <div class="shop-info">
-                    <h3>Abstract Thoughts</h3>
-                    <span class="price">$85</span>
-                </div>
-                <button class="btn-outline">Purchase</button>
-            </div>
-            <div class="shop-card tilt-card glass scroll-reveal">
-                <img src="https://picsum.photos/seed/print3/500/500" alt="Print">
-                <div class="shop-info">
-                    <h3>Neon Whispers</h3>
-                    <span class="price">$150</span>
-                </div>
-                <button class="btn-outline">Purchase</button>
-            </div>
-        </div>
-    </section>
 
-    <section id="commissions" class="section glass-section">
-        <div class="commission-container scroll-reveal">
-            <h2 class="section-title">Commission an Artwork</h2>
-            <p style="text-align:center; margin-bottom: 2rem;">What would you like created?</p>
-            <div class="commission-types">
-                <button class="type-btn active">Portrait</button>
-                <button class="type-btn">Poster</button>
-                <button class="type-btn">Illustration</button>
-                <button class="type-btn">Painting</button>
-                <button class="type-btn">Custom Design</button>
-            </div>
-            <form class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea rows="5" placeholder="Tell me about your vision..." required></textarea>
-                <button type="submit" class="btn-primary">Request Commission</button>
-            </form>
-        </div>
-    </section>
+            <div class="categories-grid">
+                <!-- Paintings -->
+                <div class="category-card reveal-reveal" style="--bg-url: url('https://images.unsplash.com/photo-1579783928621-7a13d66a6211?q=80&w=600&auto=format&fit=crop')">
+                    <div class="category-card-overlay"></div>
+                    <div class="category-content">
+                        <span class="cat-num">01</span>
+                        <h3 class="category-title">Paintings</h3>
+                        <p class="category-desc">Rich oil textures, liquid acrylics, and gold-leaf details celebrating physical mediums.</p>
+                        <a href="#gallery" class="category-link" data-filter="Paintings">Explore Paintings <i class="fa-solid fa-arrow-right-long"></i></a>
+                    </div>
+                    <div class="card-glow-border"></div>
+                </div>
 
-    <section class="section">
-        <div class="carousel-wrapper scroll-reveal">
-            <div class="carousel" id="testimonial-carousel">
-                <div class="testimonial-card glass">
-                    <div class="stars">★★★★★</div>
-                    <p>"Amazing artwork and attention to detail. The piece transformed my living room."</p>
-                    <span>— Elena R.</span>
+                <!-- Sketches -->
+                <div class="category-card reveal-reveal" style="--bg-url: url('https://images.unsplash.com/photo-1576016770956-debb63d90029?q=80&w=600&auto=format&fit=crop')">
+                    <div class="category-card-overlay"></div>
+                    <div class="category-content">
+                        <span class="cat-num">02</span>
+                        <h3 class="category-title">Sketches</h3>
+                        <p class="category-desc">Raw expression and precise anatomies captured in pencil, charcoal, and monochrome ink.</p>
+                        <a href="#gallery" class="category-link" data-filter="Sketches">Explore Sketches <i class="fa-solid fa-arrow-right-long"></i></a>
+                    </div>
+                    <div class="card-glow-border"></div>
                 </div>
-                <div class="testimonial-card glass">
-                    <div class="stars">★★★★★</div>
-                    <p>"Sayantani captured exactly what I envisioned. A true visual storyteller."</p>
-                    <span>— Marcus T.</span>
+
+                <!-- Posters -->
+                <div class="category-card reveal-reveal" style="--bg-url: url('https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=600&auto=format&fit=crop')">
+                    <div class="category-card-overlay"></div>
+                    <div class="category-content">
+                        <span class="cat-num">03</span>
+                        <h3 class="category-title">Posters</h3>
+                        <p class="category-desc">Immersive and atmospheric vector poster designs containing deep conceptual storytelling.</p>
+                        <a href="#gallery" class="category-link" data-filter="Posters">Explore Posters <i class="fa-solid fa-arrow-right-long"></i></a>
+                    </div>
+                    <div class="card-glow-border"></div>
                 </div>
-                <div class="testimonial-card glass">
-                    <div class="stars">★★★★★</div>
-                    <p>"The branding and graphic design work elevated our entire agency."</p>
-                    <span>— Sarah W.</span>
+
+                <!-- Graphic Design -->
+                <div class="category-card reveal-reveal" style="--bg-url: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop')">
+                    <div class="category-card-overlay"></div>
+                    <div class="category-content">
+                        <span class="cat-num">04</span>
+                        <h3 class="category-title">Graphic Design</h3>
+                        <p class="category-desc">High-concept layouts, corporate identity, dynamic digital assets, and typography.</p>
+                        <a href="#gallery" class="category-link" data-filter="Graphic Design">Explore Graphics <i class="fa-solid fa-arrow-right-long"></i></a>
+                    </div>
+                    <div class="card-glow-border"></div>
+                </div>
+
+                <!-- Commissions -->
+                <div class="category-card reveal-reveal" style="--bg-url: url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=600&auto=format&fit=crop')">
+                    <div class="category-card-overlay"></div>
+                    <div class="category-content">
+                        <span class="cat-num">05</span>
+                        <h3 class="category-title">Commissions</h3>
+                        <p class="category-desc">Bespoke customized portraits, book illustrations, and personal request paintings.</p>
+                        <a href="#commissions" class="category-link">Book Commission <i class="fa-solid fa-arrow-right-long"></i></a>
+                    </div>
+                    <div class="card-glow-border"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer id="contact">
-        <h2 class="footer-title">Let's Create Something Beautiful Together</h2>
-        <div class="social-links">
-            <a href="#">Email</a>
-            <a href="#">Instagram</a>
-            <a href="#">Behance</a>
-        </div>
-        <div class="footer-bottom">
-            <div class="logo">SAYANTANI.</div>
-            <p>&copy; 2026 Sayantani. All rights reserved.</p>
-        </div>
-    </footer>
+    <!-- 4. Interactive Masonry Gallery -->
+    <section class="gallery-section scroll-section" id="gallery">
+        <div class="container">
+            <div class="section-header reveal-reveal">
+                <span class="section-subtitle">CURATED PIECES</span>
+                <h2 class="section-title text-center">Interactive Gallery</h2>
+                <div class="section-divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-diamond"></div>
+                    <div class="divider-line"></div>
+                </div>
+            </div>
 
-    <div id="art-modal" class="modal">
-        <div class="modal-content glass">
-            <span class="close">&times;</span>
-            <img id="modal-img" src="" alt="Artwork">
-            <div class="modal-info">
-                <h2 id="modal-title"></h2>
-                <p id="modal-desc"></p>
-                <span id="modal-price"></span>
-                <button class="btn-primary">Add to Collection</button>
+            <!-- Gallery Filters -->
+            <div class="gallery-filters reveal-reveal">
+                <button class="filter-btn active" data-filter="all">All Works</button>
+                <button class="filter-btn" data-filter="Paintings">Paintings</button>
+                <button class="filter-btn" data-filter="Sketches">Sketches</button>
+                <button class="filter-btn" data-filter="Posters">Posters</button>
+                <button class="filter-btn" data-filter="Graphic Design">Graphic Design</button>
+                <button class="filter-btn" data-filter="Commissions">Commissions</button>
+            </div>
+
+            <!-- Masonry Grid -->
+            <div class="gallery-masonry reveal-reveal">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item-wrapper" data-category="Paintings">
+                    <div class="gallery-item" data-id="1">
+                        <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=800&auto=format&fit=crop" loading="lazy" alt="Celestial Echoes" class="gallery-img">
+                        <div class="gallery-item-hover">
+                            <div class="hover-details">
+                                <h4 class="item-title">Celestial Echoes</h4>
+                                <span class="item-medium">Oil & Gold Leaf on Board</span>
+                            </div>
+                            <span class="gallery-zoom-icon"><i class="fa-solid fa-eye"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item-wrapper" data-category="Paintings">
+                    <div class="gallery-item" data-id="2">
+                        <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=800&auto=format&fit=crop" loading="lazy" alt="Whispering Wilds" class="gallery-img">
+                        <div class="gallery-item-hover">
+                            <div class="hover-details">
+                                <h4 class="item-title">Whispering Wilds</h4>
+                                <span class="item-medium">Acrylic on Canvas</span>
+                            </div>
+                            <span class="gallery-zoom-icon"><i class="fa-solid fa-eye"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item-wrapper" data-category="Sketches">
+                    <div class="gallery-item" data-id="3">
+                        <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=800&auto=format&fit=crop" loading="lazy" alt="The Human Silhouette" class="gallery-img">
+                        <div class="gallery-item-hover">
+                            <div class="hover-details">
+                                <h4 class="item-title">The Human Silhouette</h4>
+                                <span class="item-medium">Charcoal on Fine Grain Paper</span>
+                            </div>
+                            <span class="gallery-zoom-icon"><i class="fa-solid fa-eye"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item-wrapper" data-category="Graphic Design">
+                    <div class="gallery-item" data-id="4">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop" loading="lazy" alt="Modernist Utopia" class="gallery-img">
+                        <div class="gallery-item-hover">
+                            <div class="hover-details">
+                                <h4 class="item-title">Modernist Utopia</h4>
+                                <span class="item-medium">Digital Vector Composition</span>
+                            </div>
+                            <span class="gallery-zoom-icon"><i class="fa-solid fa-eye"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 5 -->
+                <div class="gallery-item-wrapper" data-category="Paintings">
+                    <div class="gallery-item" data-id="5">
+                        <img src="https://images.unsplash.com/photo-1580136579312-94651dfd596d?q=80&w=800&auto=format&fit=crop" loading="lazy" alt="Serenity of the Sea" class="gallery-img">
+                        <div class="gallery-item-hover">
+                            <div class="hover-details">
+                                <h4 class="item-title">Serenity of the Sea</h4>
+                                <span class="item-medium">Oil on Oak Panel</span>
+                            </div>
+                            <span class="gallery-zoom-icon"><i class="fa-solid fa-eye"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 -->
+                <div class="gallery-item-wrapper" data-category="Commissions">
+                    <div class="gallery-item" data-id="6">
+                        <img src="https://images.unsplash.com/photo-1579783928621-7a13d66a6211?q=80&w=800&auto=format&fit=crop" loading="lazy" alt="Renaissance Reborn" class="gallery-img">
+                        <div class="gallery-item-hover">
+                            <div class="hover-details">
+                                <h4 class="item-title">Renaissance Reborn</h4>
+                                <span class="item-medium">Bespoke Fine Art Portrait</span>
+                            </div>
+                            <span class="gallery-zoom-icon"><i class="fa-solid fa-eye"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 7 -->
+                <div class="gallery-item-wrapper" data-category="Posters">
+                    <div class="gallery-item" data-id="7">
+                        <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=800&auto=format&fit=crop" loading="lazy" alt="Fragmented Realities" class="gallery-img">
+                        <div class="gallery-item-hover">
+                            <div class="hover-details">
+                                <h4 class="item-title">Fragmented Realities</h4>
+                                <span class="item-medium">Conceptual Poster Print</span>
+                            </div>
+                            <span class="gallery-zoom-icon"><i class="fa-solid fa-eye"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 8 -->
+                <div class="gallery-item-wrapper" data-category="Paintings">
+                    <div class="gallery-item" data-id="8">
+                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=800&auto=format&fit=crop" loading="lazy" alt="The Golden Canvas" class="gallery-img">
+                        <div class="gallery-item-hover">
+                            <div class="hover-details">
+                                <h4 class="item-title">The Golden Canvas</h4>
+                                <span class="item-medium">Gold Leaf & Acrylic on Board</span>
+                            </div>
+                            <span class="gallery-zoom-icon"><i class="fa-solid fa-eye"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Immersive Artwork Lightbox Modal -->
+    <div class="modal" id="gallery-modal">
+        <button class="modal-close" id="modal-close" aria-label="Close Lightbox">&times;</button>
+        <div class="modal-container">
+            <div class="modal-left">
+                <img src="" alt="" class="modal-img" id="modal-img">
+            </div>
+            <div class="modal-right">
+                <span class="modal-meta-category" id="modal-cat">PAINTINGS</span>
+                <h3 class="modal-title" id="modal-title">Celestial Echoes</h3>
+                
+                <div class="modal-stats">
+                    <div class="stat-box">
+                        <span class="stat-label">Medium</span>
+                        <span class="stat-value" id="modal-medium">Acrylic on Canvas</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Dimensions</span>
+                        <span class="stat-value" id="modal-dims">36" x 48"</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Year</span>
+                        <span class="stat-value" id="modal-year">2026</span>
+                    </div>
+                </div>
+
+                <p class="modal-desc" id="modal-desc">
+                    This masterpiece is a signature digital fluid interpretation displaying modern metallic themes blended beautifully with luxury gold elements. Each color is handcrafted digitally and physically printed onto fine canvas.
+                </p>
+
+                <div class="modal-price-tag">
+                    <span class="price-label">Exhibition Price:</span>
+                    <span class="price-value" id="modal-price">$1,200</span>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="btn btn-primary" id="add-to-collection-btn">
+                        <i class="fa-solid fa-cart-plus"></i> Add to Collection
+                    </button>
+                    <a href="#contact" class="btn btn-secondary" id="inquire-btn">Inquire Specially</a>
+                </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
-</body>
+    <!-- 5. Artist Story Section -->
+    <section class="about-section scroll-section" id="about">
+        <div class="container-fluid">
+            <div class="about-grid">
+                <!-- Left Column: Rich Biography -->
+                <div class="about-text-panel reveal-reveal">
+                    <span class="section-subtitle">BIOGRAPHY</span>
+                    <h2 class="section-title">The Artist Behind The Canvas</h2>
+                    <div class="bio-intro">
+                        "Art is not what I see, but what I make others see. I blend classical mediums with state-of-the-art technological canvases to design absolute experiences."
+                    </div>
+                    <div class="bio-body">
+                        <p>
+                            Sayantani is a pioneering visual storyteller whose practice thrives in the captivating grey area between fine physical art and high-definition graphic design. With years spent mastering fine paint handling, charcoal anatomy, and gold-leaf guilding techniques, she bridges traditional aesthetic depth with a futuristic digital design language.
+                        </p>
+                        <p>
+                            Each piece is conceptualized as an emotional sanctuary, where layers of acrylic flow or geometric layouts offer viewers a momentary escape from the chaotic modern digital cycle into an elevated, luxury aesthetic world.
+                        </p>
+                    </div>
+
+                    <!-- Custom Luxury Scrolling Timeline -->
+                    <div class="timeline-container">
+                        <div class="timeline-line">
+                            <div class="timeline-line-progress" id="timeline-progress"></div>
+                        </div>
+
+                        <!-- Timeline Item 1 -->
+                        <div class="timeline-item reveal-reveal" data-year="2022">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <span class="timeline-date">2022</span>
+                                <h4 class="timeline-title">Started Art Journey</h4>
+                                <p class="timeline-desc">Left traditional corporate workspaces to focus purely on oil painting and classical anatomy sketching.</p>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 2 -->
+                        <div class="timeline-item reveal-reveal" data-year="2023">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <span class="timeline-date">2023</span>
+                                <h4 class="timeline-title">First Exhibition</h4>
+                                <p class="timeline-desc">Featured in 'Visual Whispers' gallery show in Kolkata, gaining critical acclaim for gold foil usage.</p>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 3 -->
+                        <div class="timeline-item reveal-reveal" data-year="2024">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <span class="timeline-date">2024</span>
+                                <h4 class="timeline-title">First Commission</h4>
+                                <p class="timeline-desc">Secured first international luxury corporate hotel contract, designing five colossal abstract panels.</p>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 4 -->
+                        <div class="timeline-item reveal-reveal" data-year="2025">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <span class="timeline-date">2025</span>
+                                <h4 class="timeline-title">Expanded Into Graphic Design</h4>
+                                <p class="timeline-desc">Blended vector illustration and visual design to release a series of award-winning conceptual poster prints.</p>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 5 -->
+                        <div class="timeline-item reveal-reveal" data-year="2026">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <span class="timeline-date">2026</span>
+                                <h4 class="timeline-title">Portfolio Launch</h4>
+                                <p class="timeline-desc">Debuting Sayantani.art — an immersive premium digital art exhibition space built for art connoisseurs worldwide.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Immersive Media Representation -->
+                <div class="about-media-panel reveal-reveal">
+                    <div class="artist-portrait-frame floating-effect">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop" alt="Sayantani Portrait" class="artist-portrait">
+                        <div class="artist-caption-floating">
+                            <span class="artist-role">Sayantani</span>
+                            <span class="artist-signature">Visual Alchemist</span>
+                        </div>
+                        <div class="experience-badge">
+                            <span class="xp-number">05+</span>
+                            <span class="xp-text">Years of Magic</span>
+                        </div>
+                        <div class="frame-edge border-top-left"></div>
+                        <div class="frame-edge border-bottom-right"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Shop Section -->
+    <section class="shop-section scroll-section" id="shop">
+        <div class="container">
+            <div class="section-header reveal-reveal">
+                <span class="section-subtitle">STOREFRONT</span>
+                <h2 class="section-title text-center">Exclusive Art Store</h2>
+                <div class="section-divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-diamond"></div>
+                    <div class="divider-line"></div>
+                </div>
+            </div>
+
+            <div class="shop-grid">
+                <!-- Shop Item 1 -->
+                <div class="shop-card tilt-element reveal-reveal">
+                    <div class="shop-badge">Limited Print</div>
+                    <div class="shop-image-container">
+                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=600&auto=format&fit=crop" alt="The Golden Canvas (Limited Print)" class="shop-img">
+                        <div class="shop-overlay">
+                            <button class="shop-action-btn view-shop-item" data-id="8"><i class="fa-solid fa-eye"></i> View Details</button>
+                        </div>
+                    </div>
+                    <div class="shop-info">
+                        <h3 class="shop-item-title">The Golden Canvas</h3>
+                        <p class="shop-item-category">Limited Giclée Print (Numbered)</p>
+                        <div class="shop-pricing-row">
+                            <span class="shop-price">$120.00</span>
+                            <button class="btn-shop-buy active-buy"><i class="fa-solid fa-bag-shopping"></i> Purchase</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shop Item 2 -->
+                <div class="shop-card tilt-element reveal-reveal" style="transition-delay: 0.1s">
+                    <div class="shop-badge">Poster</div>
+                    <div class="shop-image-container">
+                        <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=600&auto=format&fit=crop" alt="Whispering Wilds (A2 Art Poster)" class="shop-img">
+                        <div class="shop-overlay">
+                            <button class="shop-action-btn view-shop-item" data-id="2"><i class="fa-solid fa-eye"></i> View Details</button>
+                        </div>
+                    </div>
+                    <div class="shop-info">
+                        <h3 class="shop-item-title">Whispering Wilds</h3>
+                        <p class="shop-item-category">Fine Silk Finish A2 Poster</p>
+                        <div class="shop-pricing-row">
+                            <span class="shop-price">$45.00</span>
+                            <button class="btn-shop-buy active-buy"><i class="fa-solid fa-bag-shopping"></i> Purchase</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shop Item 3 -->
+                <div class="shop-card tilt-element reveal-reveal" style="transition-delay: 0.2s">
+                    <div class="shop-badge">Graphic Print</div>
+                    <div class="shop-image-container">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop" alt="Modernist Utopia (Graphic Print)" class="shop-img">
+                        <div class="shop-overlay">
+                            <button class="shop-action-btn view-shop-item" data-id="4"><i class="fa-solid fa-eye"></i> View Details</button>
+                        </div>
+                    </div>
+                    <div class="shop-info">
+                        <h3 class="shop-item-title">Modernist Utopia</h3>
+                        <p class="shop-item-category">Matte Metallic Finish Plate</p>
+                        <div class="shop-pricing-row">
+                            <span class="shop-price">$60.00</span>
+                            <button class="btn-shop-buy active-buy"><i class="fa-solid fa-bag-shopping"></i> Purchase</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Interactive Commission Section -->
+    <section class="commissions-section scroll-section" id="commissions">
+        <div class="container-fluid">
+            <div class="commissions-grid">
+                <!-- Left: Beautiful Interactive Form Details -->
+                <div class="commission-details-panel reveal-reveal">
+                    <span class="section-subtitle">CUSTOM CREATIONS</span>
+                    <h2 class="section-title">Co-Create Your Timeless Art Piece</h2>
+                    <p class="comm-text">
+                        Do you desire a custom-tailored narrative piece of art for your home, commercial lounge, or personal book publication? Whether it is a classical oil painting, modern graphic design project, or dynamic charcoal study, we will co-create an exceptional visual masterpiece together.
+                    </p>
+                    <div class="process-steps">
+                        <div class="step-card">
+                            <div class="step-icon"><i class="fa-regular fa-comment-dots"></i></div>
+                            <div class="step-info">
+                                <h4 class="step-title">01. Conceptual Consultation</h4>
+                                <p class="step-desc">We converse in detail regarding your theme, scale, and color palate references.</p>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                            <div class="step-info">
+                                <h4 class="step-title">02. Digital Mockups & Sketches</h4>
+                                <p class="step-desc">I provide physical sketches or digital compositing options before physical artwork begins.</p>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-icon"><i class="fa-solid fa-palette"></i></div>
+                            <div class="step-info">
+                                <h4 class="step-title">03. Production & Delivery</h4>
+                                <p class="step-desc">You receive ongoing weekly work-in-progress pictures of your canvas, leading to final delivery.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: High-End Form UI -->
+                <div class="commission-form-panel reveal-reveal">
+                    <div class="commission-form-card glass-container">
+                        <div class="form-header">
+                            <h3>What would you like created?</h3>
+                            <p>Choose your preferred artistic medium and scale</p>
+                        </div>
+
+                        <form id="commission-form" class="custom-form">
+                            <!-- Animated Option Selectors -->
+                            <div class="medium-options-grid">
+                                <label class="option-label active-option">
+                                    <input type="radio" name="commission_type" value="Portrait" checked>
+                                    <span class="option-tile">
+                                        <i class="fa-solid fa-user-astronaut"></i>
+                                        <span>Portrait</span>
+                                    </span>
+                                </label>
+                                <label class="option-label">
+                                    <input type="radio" name="commission_type" value="Poster">
+                                    <span class="option-tile">
+                                        <i class="fa-solid fa-circle-nodes"></i>
+                                        <span>Poster</span>
+                                    </span>
+                                </label>
+                                <label class="option-label">
+                                    <input type="radio" name="commission_type" value="Illustration">
+                                    <span class="option-tile">
+                                        <i class="fa-solid fa-pen-nib"></i>
+                                        <span>Illustration</span>
+                                    </span>
+                                </label>
+                                <label class="option-label">
+                                    <input type="radio" name="commission_type" value="Painting">
+                                    <span class="option-tile">
+                                        <i class="fa-solid fa-brush"></i>
+                                        <span>Painting</span>
+                                    </span>
+                                </label>
+                                <label class="option-label">
+                                    <input type="radio" name="commission_type" value="Custom Design">
+                                    <span class="option-tile">
+                                        <i class="fa-solid fa-bezier-curve"></i>
+                                        <span>Custom Design</span>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <!-- Input Fields with Floating Labels -->
+                            <div class="input-group">
+                                <input type="text" id="comm_name" required placeholder=" " class="form-input">
+                                <label for="comm_name" class="floating-label">Your Name</label>
+                            </div>
+
+                            <div class="input-group">
+                                <input type="email" id="comm_email" required placeholder=" " class="form-input">
+                                <label for="comm_email" class="floating-label">Email Address</label>
+                            </div>
+
+                            <div class="input-group">
+                                <select id="comm_budget" class="form-input select-input" required>
+                                    <option value="" disabled selected hidden></option>
+                                    <option value="under500">Under $500</option>
+                                    <option value="500-1500">$500 - $1,500</option>
+                                    <option value="1500-3000">$1,500 - $3,000</option>
+                                    <option value="over3000">Over $3,000 (Premium Large Canvas)</option>
+                                </select>
+                                <label for="comm_budget" class="floating-label select-floating-label">Estimated Budget Range</label>
+                            </div>
+
+                            <div class="input-group">
+                                <textarea id="comm_details" rows="4" placeholder=" " class="form-input form-textarea" required></textarea>
+                                <label for="comm_details" class="floating-label">Share your dream artwork concept...</label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary form-submit-btn">
+                                <span>Initialize Proposal</span>
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Testimonials Section -->
+    <section class="testimonials-section scroll-section">
+        <div class="container">
+            <div class="section-header reveal-reveal">
+                <span class="section-subtitle">PATRON FEEDBACK</span>
+                <h2 class="section-title text-center">Collector Testimonials</h2>
+                <div class="section-divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-diamond"></div>
+                    <div class="divider-line"></div>
+                </div>
+            </div>
+
+            <!-- Testimonials Carousel Container -->
+            <div class="carousel-container reveal-reveal">
+                <div class="carousel-track-wrapper">
+                    <div class="carousel-track" id="testimonial-track">
+                        <!-- Slide 1 -->
+                        <div class="testimonial-slide active">
+                            <div class="star-rating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                "Amazing artwork and attention to detail. The gold foil fluid textures in Sayantani's canvas have completely elevated our corporate boardroom. Every visitor leaves complimenting the design."
+                            </p>
+                            <span class="testimonial-author">— Michael Vance, Curator of Vance Fine Arts</span>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="testimonial-slide">
+                            <div class="star-rating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                "Commissioning an oil portrait for my wife's anniversary was a sublime process. Sayantani sent continuous artistic progress images and helped us pick the perfect custom dimensions."
+                            </p>
+                            <span class="testimonial-author">— Rajesh Sen, Private Collector</span>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="testimonial-slide">
+                            <div class="star-rating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                "Her limited edition posters are phenomenal. They arrive signed and beautifully packaged with a hand-written seal. It is rare to see graphic design that feels this ancient and physical."
+                            </p>
+                            <span class="testimonial-author">— Clara Dubois, Creative Lead at Velvet Studio</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carousel Controls -->
+                <div class="carousel-controls">
+                    <button class="carousel-arrow prev-arrow" id="carousel-prev" aria-label="Previous Slide"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div class="carousel-dots" id="carousel-dots">
+                        <!-- Dots dynamically rendered -->
+                    </div>
+                    <button class="carousel-arrow next-arrow" id="carousel-next" aria-label="Next Slide"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Contact Section -->
+    <section class="contact-section scroll-section" id="contact">
+        <div class="container">
+            <div class="section-header reveal-reveal">
+                <span class="section-subtitle">LET'S COLLABORATE</span>
+                <h2 class="section-title text-center">Let's Create Something Beautiful Together</h2>
+                <div class="section-divider">
+                    <div class="divider-line"></div>
+                    <div class="divider-diamond"></div>
+                    <div class="divider-line"></div>
+                </div>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Contact Info Panels -->
+                <div class="contact-info-panel reveal-reveal">
+                    <div class="contact-info-intro">
+                        Have an upcoming gallery exhibition, a design collaboration proposal, or a general collector inquiry? Reach out, and I will be delighted to connect.
+                    </div>
+
+                    <div class="contact-cards-container">
+                        <!-- Email Card -->
+                        <a href="/cdn-cgi/l/email-protection#5427352d353a20353a3d14272021303d3b3526207a373b39" class="contact-info-card magnetic" data-dist="0.1">
+                            <div class="card-icon"><i class="fa-solid fa-envelope"></i></div>
+                            <div class="card-meta">
+                                <span class="meta-label">Direct Studio Email</span>
+                                <span class="meta-value"><span class="__cf_email__" data-cfemail="4e3d2f372f203a2f20270e3d3a3b2a27212f3c3a602d2123">[email&#160;protected]</span></span>
+                            </div>
+                        </a>
+
+                        <!-- Social Card: Instagram -->
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="contact-info-card magnetic" data-dist="0.1">
+                            <div class="card-icon"><i class="fa-brands fa-instagram"></i></div>
+                            <div class="card-meta">
+                                <span class="meta-label">Instagram Portfolio</span>
+                                <span class="meta-value">@sayantani.canvas</span>
+                            </div>
+                        </a>
+
+                        <!-- Social Card: Behance -->
+                        <a href="https://behance.net" target="_blank" rel="noopener noreferrer" class="contact-info-card magnetic" data-dist="0.1">
+                            <div class="card-icon"><i class="fa-brands fa-behance"></i></div>
+                            <div class="card-meta">
+                                <span class="meta-label">Behance Portfolios</span>
+                                <span class="meta-value">behance.net/sayantani</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Form UI -->
+                <div class="contact-form-panel reveal-reveal">
+                    <form id="contact-form" class="custom-form glass-container">
+                        <div class="form-row">
+                            <div class="input-group">
+                                <input type="text" id="contact_name" required placeholder=" " class="form-input">
+                                <label for="contact_name" class="floating-label">Your Name</label>
+                            </div>
+                            <div class="input-group">
+                                <input type="email" id="contact_email" required placeholder=" " class="form-input">
+                                <label for="contact_email" class="floating-label">Email Address</label>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="text" id="contact_subject" required placeholder=" " class="form-input">
+                            <label for="contact_subject" class="floating-label">Subject</label>
+                        </div>
+
+                        <div class="input-group">
+                            <textarea id="contact_message" rows="5" required placeholder=" " class="form-input form-textarea"></textarea>
+                            <label for="contact_message" class="floating-label">Your Message...</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary contact-submit-btn">
+                            <span>Send Message</span>
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="luxury-footer">
+        <div class="container">
+            <div class="footer-top">
+                <!-- Column 1: Brand details -->
+                <div class="footer-brand-col">
+                    <a href="#home" class="footer-logo">SAYANTANI<span class="logo-dot">.</span></a>
+                    <p class="footer-brand-desc">
+                        A modern digital art exhibition showcasing timeless physical paint, delicate sketches, high-end illustration vectors, and bespoke visual art commissions.
+                    </p>
+                    <div class="social-icons-row">
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="magnetic" data-dist="0.2"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://behance.net" target="_blank" aria-label="Behance" class="magnetic" data-dist="0.2"><i class="fa-brands fa-behance"></i></a>
+                        <a href="https://pinterest.com" target="_blank" aria-label="Pinterest" class="magnetic" data-dist="0.2"><i class="fa-brands fa-pinterest"></i></a>
+                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" class="magnetic" data-dist="0.2"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="footer-links-col">
+                    <h4 class="footer-col-title">Exhibition Directory</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home Base</a></li>
+                        <li><a href="#current-exhibition">Exhibitions</a></li>
+                        <li><a href="#categories">Art Categories</a></li>
+                        <li><a href="#gallery">Interactive Gallery</a></li>
+                        <li><a href="#about">Artist's Story</a></li>
+                        <li><a href="#shop">Storefront</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Custom Actions -->
+                <div class="footer-links-col">
+                    <h4 class="footer-col-title">Support & Commissions</h4>
+                    <ul class="footer-links">
+                        <li><a href="#commissions">Book Commission</a></li>
+                        <li><a href="#contact">Corporate Licensing</a></li>
+                        <li><a href="#contact">Press Inquiries</a></li>
+                        <li><a href="#gallery">Collector Registry</a></li>
+                        <li><a href="#shop">Shipping & Return Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Newsletter -->
+                <div class="footer-newsletter-col">
+                    <h4 class="footer-col-title">Join The Collector's Circle</h4>
+                    <p class="newsletter-desc">Receive exclusive advance catalog previews, exhibition opening invitations, and early pricing on new canvas collections.</p>
+                    <form id="newsletter-form" class="newsletter-form">
+                        <input type="email" id="news_email" required placeholder="Enter your email address" aria-label="Newsletter email address" class="newsletter-input">
+                        <button type="submit" class="newsletter-submit-btn" aria-label="Subscribe"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                    <span class="newsletter-sub-status">No spam. Only luxury fine art insights.</span>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    &copy; 2026 Sayantani. All Rights Reserved. Crafted for premium digital art exhibition.
+                </div>
+                <div class="footer-extra-links">
+                    <a href="#home">Privacy Policy</a>
+                    <span class="footer-link-sep">•</span>
+                    <a href="#home">Terms of Exhibition</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Floating Action Button (Go to Top & Commission Trigger) -->
+    <div class="floating-action-buttons">
+        <button class="float-btn" id="scroll-to-top" title="Back to Top" aria-label="Scroll back to top">
+            <i class="fa-solid fa-chevron-up"></i>
+        </button>
+    </div>
+
+    <!-- Script Entrypoint -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a10cb304e8b93a4e',t:'MTc4MjMxNDI0NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
