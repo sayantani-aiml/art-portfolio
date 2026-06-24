@@ -1,255 +1,201 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="copper">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sayantani's Art Gallery</title>
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:Segoe UI, sans-serif;
-    background:#0f172a;
-    color:white;
-    line-height:1.6;
-}
-
-/* Navbar */
-nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 8%;
-    background:rgba(15,23,42,0.95);
-    position:sticky;
-    top:0;
-    z-index:1000;
-}
-
-.logo{
-    font-size:1.5rem;
-    font-weight:bold;
-    color:#38bdf8;
-}
-
-nav ul{
-    display:flex;
-    list-style:none;
-    gap:25px;
-}
-
-nav a{
-    text-decoration:none;
-    color:white;
-    transition:.3s;
-}
-
-nav a:hover{
-    color:#38bdf8;
-}
-
-/* Hero */
-.hero{
-    min-height:90vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:40px;
-    background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.7)),
-    url("https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=1400&q=80");
-    background-size:cover;
-    background-position:center;
-}
-
-.hero-content h1{
-    font-size:4rem;
-    margin-bottom:15px;
-}
-
-.hero-content p{
-    font-size:1.2rem;
-    margin-bottom:25px;
-}
-
-.btn{
-    display:inline-block;
-    background:#38bdf8;
-    color:black;
-    padding:12px 25px;
-    border-radius:8px;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-/* Sections */
-section{
-    padding:80px 10%;
-}
-
-.section-title{
-    text-align:center;
-    margin-bottom:40px;
-    font-size:2.2rem;
-    color:#38bdf8;
-}
-
-/* Gallery */
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:20px;
-}
-
-.gallery img{
-    width:100%;
-    height:300px;
-    object-fit:cover;
-    border-radius:12px;
-    transition:.3s;
-}
-
-.gallery img:hover{
-    transform:scale(1.05);
-}
-
-/* Cards */
-.card{
-    background:#1e293b;
-    padding:25px;
-    border-radius:12px;
-    text-align:center;
-}
-
-/* About */
-.about{
-    max-width:900px;
-    margin:auto;
-    text-align:center;
-    font-size:1.1rem;
-}
-
-/* Contact */
-.contact{
-    text-align:center;
-}
-
-.contact p{
-    margin:10px 0;
-}
-
-/* Footer */
-footer{
-    text-align:center;
-    padding:25px;
-    background:#020617;
-}
-
-/* Mobile */
-@media(max-width:768px){
-
-    .hero-content h1{
-        font-size:2.5rem;
-    }
-
-    nav{
-        flex-direction:column;
-        gap:15px;
-    }
-
-    nav ul{
-        flex-wrap:wrap;
-        justify-content:center;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAYANTANI | Art & Digital Exhibition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">SAYANTANI.</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#exhibition">Exhibition</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#story">About</a></li>
+                <li><a href="#commissions">Commissions</a></li>
+            </ul>
+            <div class="theme-switcher">
+                <button class="theme-btn" data-set-theme="emerald" style="background: #0F1D1A; border-color: #D4AF37;"></button>
+                <button class="theme-btn active" data-set-theme="copper" style="background: #0B1220; border-color: #C47A3A;"></button>
+                <button class="theme-btn" data-set-theme="burgundy" style="background: #1B0F12; border-color: #D4AF37;"></button>
+            </div>
+        </div>
+    </nav>
 
-<nav>
-    <div class="logo">Munu Art</div>
+    <header id="home" class="hero">
+        <canvas id="particle-canvas"></canvas>
+        <div class="hero-content reveal-text">
+            <h1 class="title">SAYANTANI</h1>
+            <p class="subtitle">Traditional Artist <span class="dot">•</span> Graphic Designer <span class="dot">•</span> Visual Storyteller</p>
+            <p class="description">Transforming imagination into timeless art.</p>
+            <a href="#gallery" class="btn-primary">Explore Gallery</a>
+        </div>
+    </header>
 
-    <ul>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#commissions">Commissions</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-</nav>
+    <section id="exhibition" class="section">
+        <h2 class="section-title scroll-reveal">Current Exhibition</h2>
+        <div class="grid-3 featured-grid">
+            <div class="art-card scroll-reveal">
+                <div class="img-wrapper"><img src="https://picsum.photos/seed/art1/600/800" alt="Artwork"></div>
+                <div class="card-info">
+                    <h3>Ethereal Silence</h3>
+                    <p>Oil on Canvas, 2025</p>
+                </div>
+            </div>
+            <div class="art-card scroll-reveal" style="transition-delay: 0.1s;">
+                <div class="img-wrapper"><img src="https://picsum.photos/seed/art2/600/800" alt="Artwork"></div>
+                <div class="card-info">
+                    <h3>Midnight Bloom</h3>
+                    <p>Digital Painting, 2026</p>
+                </div>
+            </div>
+            <div class="art-card scroll-reveal" style="transition-delay: 0.2s;">
+                <div class="img-wrapper"><img src="https://picsum.photos/seed/art3/600/800" alt="Artwork"></div>
+                <div class="card-info">
+                    <h3>Golden Echoes</h3>
+                    <p>Mixed Media, 2026</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section class="hero">
-    <div class="hero-content">
-        <h1>Sayantani's Art Gallery</h1>
-        <p>Artist • Illustrator • Creative Thinker</p>
-        <a href="#gallery" class="btn">Explore Gallery</a>
+    <section class="section categories-section">
+        <div class="grid-5 categories-grid">
+            <div class="category-card glass scroll-reveal"><h4>Paintings</h4></div>
+            <div class="category-card glass scroll-reveal"><h4>Sketches</h4></div>
+            <div class="category-card glass scroll-reveal"><h4>Posters</h4></div>
+            <div class="category-card glass scroll-reveal"><h4>Graphic Design</h4></div>
+            <div class="category-card glass scroll-reveal"><h4>Commissions</h4></div>
+        </div>
+    </section>
+
+    <section id="gallery" class="section">
+        <h2 class="section-title scroll-reveal">The Archives</h2>
+        <div class="masonry-grid">
+            </div>
+    </section>
+
+    <section id="story" class="section story-section">
+        <h2 class="section-title scroll-reveal">The Artist Behind The Canvas</h2>
+        <div class="story-container">
+            <div class="story-image scroll-reveal">
+                <img src="https://picsum.photos/seed/artist/800/1000" alt="Sayantani">
+            </div>
+            <div class="timeline scroll-reveal">
+                <div class="timeline-item"><span class="year">2022</span><p>Started Art Journey</p></div>
+                <div class="timeline-item"><span class="year">2023</span><p>First Exhibition</p></div>
+                <div class="timeline-item"><span class="year">2024</span><p>First Commission</p></div>
+                <div class="timeline-item"><span class="year">2025</span><p>Expanded Into Graphic Design</p></div>
+                <div class="timeline-item"><span class="year">2026</span><p>Portfolio Launch</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="shop" class="section">
+        <h2 class="section-title scroll-reveal">Premium Prints</h2>
+        <div class="grid-3 shop-grid">
+            <div class="shop-card tilt-card glass scroll-reveal">
+                <img src="https://picsum.photos/seed/print1/500/500" alt="Print">
+                <div class="shop-info">
+                    <h3>City of Dreams</h3>
+                    <span class="price">$120</span>
+                </div>
+                <button class="btn-outline">Purchase</button>
+            </div>
+            <div class="shop-card tilt-card glass scroll-reveal">
+                <img src="https://picsum.photos/seed/print2/500/500" alt="Print">
+                <div class="shop-info">
+                    <h3>Abstract Thoughts</h3>
+                    <span class="price">$85</span>
+                </div>
+                <button class="btn-outline">Purchase</button>
+            </div>
+            <div class="shop-card tilt-card glass scroll-reveal">
+                <img src="https://picsum.photos/seed/print3/500/500" alt="Print">
+                <div class="shop-info">
+                    <h3>Neon Whispers</h3>
+                    <span class="price">$150</span>
+                </div>
+                <button class="btn-outline">Purchase</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="commissions" class="section glass-section">
+        <div class="commission-container scroll-reveal">
+            <h2 class="section-title">Commission an Artwork</h2>
+            <p style="text-align:center; margin-bottom: 2rem;">What would you like created?</p>
+            <div class="commission-types">
+                <button class="type-btn active">Portrait</button>
+                <button class="type-btn">Poster</button>
+                <button class="type-btn">Illustration</button>
+                <button class="type-btn">Painting</button>
+                <button class="type-btn">Custom Design</button>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="5" placeholder="Tell me about your vision..." required></textarea>
+                <button type="submit" class="btn-primary">Request Commission</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="carousel-wrapper scroll-reveal">
+            <div class="carousel" id="testimonial-carousel">
+                <div class="testimonial-card glass">
+                    <div class="stars">★★★★★</div>
+                    <p>"Amazing artwork and attention to detail. The piece transformed my living room."</p>
+                    <span>— Elena R.</span>
+                </div>
+                <div class="testimonial-card glass">
+                    <div class="stars">★★★★★</div>
+                    <p>"Sayantani captured exactly what I envisioned. A true visual storyteller."</p>
+                    <span>— Marcus T.</span>
+                </div>
+                <div class="testimonial-card glass">
+                    <div class="stars">★★★★★</div>
+                    <p>"The branding and graphic design work elevated our entire agency."</p>
+                    <span>— Sarah W.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2 class="footer-title">Let's Create Something Beautiful Together</h2>
+        <div class="social-links">
+            <a href="#">Email</a>
+            <a href="#">Instagram</a>
+            <a href="#">Behance</a>
+        </div>
+        <div class="footer-bottom">
+            <div class="logo">SAYANTANI.</div>
+            <p>&copy; 2026 Sayantani. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="art-modal" class="modal">
+        <div class="modal-content glass">
+            <span class="close">&times;</span>
+            <img id="modal-img" src="" alt="Artwork">
+            <div class="modal-info">
+                <h2 id="modal-title"></h2>
+                <p id="modal-desc"></p>
+                <span id="modal-price"></span>
+                <button class="btn-primary">Add to Collection</button>
+            </div>
+        </div>
     </div>
-</section>
 
-<section id="gallery">
-    <h2 class="section-title">Featured Artwork</h2>
-
-    <div class="gallery">
-        <img src="images/art1.jpg" alt="Artwork 1">
-        <img src="images/art2.jpg" alt="Artwork 2">
-        <img src="images/art3.jpg" alt="Artwork 3">
-        <img src="images/art4.jpg" alt="Artwork 4">
-        <img src="images/art5.jpg" alt="Artwork 5">
-        <img src="images/art6.jpg" alt="Artwork 6">
-    </div>
-</section>
-
-<section id="about">
-    <h2 class="section-title">About Me</h2>
-
-    <div class="about">
-        <p>
-            Hi, I'm Sayantani, an artist passionate about creating expressive and visually engaging artwork.
-            My work explores imagination, color, emotion, and storytelling through paintings and illustrations.
-            This portfolio showcases some of my favorite creations and artistic experiments.
-        </p>
-    </div>
-</section>
-
-<section id="commissions">
-    <h2 class="section-title">Commissions</h2>
-
-    <div class="card">
-        <h3>Custom Artwork</h3>
-        <br>
-        <p>
-            I accept commissions for portraits, illustrations, concept art,
-            custom paintings, and creative projects.
-        </p>
-        <br>
-        <p>
-            Contact me with your idea and I'll help bring it to life.
-        </p>
-    </div>
-</section>
-
-<section id="contact">
-    <h2 class="section-title">Contact</h2>
-
-    <div class="contact">
-        <p>📧 your@email.com</p>
-        <p>📷 Instagram: @yourhandle</p>
-        <p>🎨 Open for commissions</p>
-    </div>
-</section>
-
-<footer>
-    <p>© 2026 Sayantani's Art Gallery. All Rights Reserved.</p>
-</footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
